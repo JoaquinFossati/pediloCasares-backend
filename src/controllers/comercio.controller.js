@@ -67,7 +67,7 @@ const actualizar = async (req, res) => {
       return res.status(403).json({ error: 'Sin permiso para editar este comercio' });
     }
 
-    const camposComunes = ['nombre', 'descripcion', 'foto', 'tipo', 'direccion', 'latitud', 'longitud',
+    const camposComunes = ['nombre', 'descripcion', 'foto', 'logo', 'tipo', 'direccion', 'latitud', 'longitud',
                            'telefono', 'horarioApertura', 'horarioCierre',
                            'colorFondo', 'colorTexto', 'colorAccento'];
     const camposSoloAdmin = ['costoEnvio', 'comisionPorcentaje', 'zonaCobertura'];

@@ -19,6 +19,10 @@ const Comercio = sequelize.define('Comercio', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  logo: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   direccion: {
     type: DataTypes.STRING,
     allowNull: false,
