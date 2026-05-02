@@ -41,7 +41,8 @@ const handleUpload = (folder) => async (req, res, next) => {
     const url = await subirACloudinary(req.file.buffer, folder);
     res.json({ url });
   } catch (err) {
-    next(err);
+    console.error('[UPLOAD ERROR]', JSON.stringify(err));
+    res.status(500).json({ error: err.message || err.error || 'Error al subir imagen' });
   }
 };
 
