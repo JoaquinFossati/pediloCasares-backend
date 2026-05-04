@@ -80,6 +80,11 @@ const Comercio = sequelize.define('Comercio', {
     type: DataTypes.INTEGER,
     defaultValue: 5000,
   },
+  // horariosSemana: { lunes: { abierto: true, apertura: "09:00", cierre: "22:00" }, ... }
+  horariosSemana: {
+    type: DataTypes.JSONB,
+    allowNull: true,
+  },
   // ── Personalización visual del card ─────────────────────────────────────
   colorFondo:   { type: DataTypes.STRING(9), allowNull: true },  // ej: "#FFFFFF"
   colorTexto:   { type: DataTypes.STRING(9), allowNull: true },  // ej: "#212121"

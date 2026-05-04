@@ -68,7 +68,7 @@ const actualizar = async (req, res) => {
     }
 
     const camposComunes = ['nombre', 'descripcion', 'foto', 'logo', 'tipo', 'direccion', 'latitud', 'longitud',
-                           'telefono', 'horarioApertura', 'horarioCierre',
+                           'telefono', 'horarioApertura', 'horarioCierre', 'horariosSemana',
                            'colorFondo', 'colorTexto', 'colorAccento'];
     const camposSoloAdmin = ['costoEnvio', 'comisionPorcentaje', 'zonaCobertura'];
     const campos = req.user.rol === 'admin'
