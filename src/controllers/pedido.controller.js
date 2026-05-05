@@ -485,6 +485,8 @@ const aceptarDelivery = async (req, res) => {
     // Notificar al comerciante que un delivery tomó el pedido
     const comercioDelPedido = await Comercio.findByPk(pedido.comercioId, { attributes: ['usuarioId'] });
     if (comercioDelPedido) {
+      const propietario = await User.findByPk(comercioDelPedido.usuarioId, { attributes: ['fcmToken'] });
+      sendPush(propietario?.fcmToken, '🛵 Delivery en camino', `Un repartidor tomó el pedido #${pedido.numeroPedido} y va hacia tu comercio`, { pedidoId: pedido.id });
       crearNotificacion(comercioDelPedido.usuarioId, {
         tipo:    'pedido',
         emoji:   '🛵',
