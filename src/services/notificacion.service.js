@@ -1,5 +1,6 @@
-const { Notificacion } = require('../models');
+const { Notificacion, User } = require('../models');
 const { getIO } = require('../config/socketInstance');
+const { sendPush } = require('../utils/notifications');
 
 /**
  * Crea una notificación en la base de datos y la emite al usuario vía socket.
@@ -24,6 +25,12 @@ const crearNotificacion = async (usuarioId, { tipo = 'sistema', emoji = '🔔', 
         data:      notif.data,
         createdAt: notif.createdAt,
       });
+    }
+
+    // Push notification (fuera de la app)
+    const user = await User.findByPk(usuarioId, { attributes: ['fcmToken'] });
+    if (user?.fcmToken) {
+      sendPush(user.fcmToken, `${emoji} ${titulo}`, mensaje, data || {});
     }
 
     return notif;
